@@ -31,18 +31,18 @@ createApp({
                 }
             ],
             currentPosition: 0,
-            setIntervalTime: 3000
+            setIntervalTime: 3000,
         };
     },
     methods: {
-        nextSlide() {
+        nextSlide: function() {
             if (this.currentPosition < this.slides.length - 1) {
                 this.currentPosition++;
             } else {
                 this.currentPosition = 0;
             }
         },
-        prevSlide() {
+        prevSlide: function() {
             if (this.currentPosition > 0) {
                 this.currentPosition--; 
             } else {
@@ -52,9 +52,11 @@ createApp({
         showSlide(activeThumb) {
             this.currentPosition = activeThumb;
         },
-        testFunction: function () {
-            setInterval(function () {
-              nextSlide;
-          }, 2000);
+        setAutoPlay: function () {
+            setInterval(this.nextSlide, this.setIntervalTime);
+        }
+    },
+    created: function() {
+        this.setAutoPlay();
     }
 }).mount("#app");
